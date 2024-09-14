@@ -4,8 +4,7 @@ import clientPromise from '@/lib/mongodb';
 export async function GET() {
   try {
     const client = await clientPromise;
-    // TODO: Change db name
-    const db = client.db('your-database-name');
+    const db = client.db('admin');
     const ideas = await db.collection('ideas').find({}).toArray();
     return NextResponse.json(ideas);
   } catch (e) {
