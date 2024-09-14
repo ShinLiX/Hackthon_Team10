@@ -1,0 +1,104 @@
+.idea-input-form {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.idea-section {
+  margin-bottom: 20px;
+}
+
+.idea-section label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.idea-section input,
+.idea-section textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.idea-what-we-need {
+  margin-bottom: 20px;
+}
+
+.idea-what-we-need h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.team-member-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.team-member-row label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.team-member-row select,
+.team-member-row input[type="number"] {
+  margin-right: 10px;
+}
+
+.team-member-row button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.team-member-row button:hover {
+  background-color: #0056b3;
+}
+
+.remove-member-button {
+  background-color: #dc3545;
+}
+
+.remove-member-button:hover {
+  background-color: #c82333;
+}
+
+.contact-info-row {
+  margin-bottom: 15px;
+}
+
+.contact-info-row label {
+  display: inline-block;
+  width: 120px;
+  font-weight: bold;
+}
+
+.contact-info-row input {
+  width: calc(100% - 130px);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button[type="submit"] {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
