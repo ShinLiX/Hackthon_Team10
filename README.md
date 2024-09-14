@@ -35,9 +35,8 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
-## Install MongoDB
-- Mac
+## Setup
 ```
-$ brew tap mongodb/brew && brew install mongodb-community@7.0 && brew services start mongodb/brew/mongodb-community
-$ brew services list | grep mongodb
+# Build mongoDB container
+$ docker compose up -d
 ```
