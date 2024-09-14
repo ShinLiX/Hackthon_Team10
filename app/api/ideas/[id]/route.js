@@ -1,18 +1,13 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
-import { ObjectId } from 'mongodb';
 
-export async function GET(req) {
-  const { id } = req.params;
-
-  if (!ObjectId.isValid(id)) {
-    return NextResponse.json({ message: 'Invalid ID format' }, { status: 400 });
-  }
+export async function GET(req, { params }) {
+  const { id } = params;
 
   try {
     const client = await clientPromise;
     const db = client.db('admin');
-    const idea = await db.collection('ideas').findOne({ _id: new ObjectId(id) });
+    const idea = await db.collection('ideas').findOne({ _id: id });
 
     if (!idea) {
       return NextResponse.json({ message: 'Idea not found' }, { status: 404 });
