@@ -125,7 +125,7 @@ export default function OnboardingPage() {
   );
 
   return (
-    <div className="bg-white w-screen min-h-screen flex flex-col items-center justify-center p-4 text-black">
+    <div className="bg-cream w-screen min-h-screen flex flex-col items-center justify-center p-4 text-black">
       <h1 className="text-2xl font-bold mb-4">Welcome, {user.fullName}!</h1>
       <p className="text-lg mb-8">
         Lets get started by selecting what describes you best:
