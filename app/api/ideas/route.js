@@ -4,7 +4,7 @@ import clientPromise from '@/lib/mongodb';
 export async function GET() {
   try {
     const client = await clientPromise;
-    const db = client.db('admin');
+    const db = client.db('hackathon_team_10');
     const ideas = await db.collection('ideas').find({}).toArray();
     return NextResponse.json(ideas);
   } catch (e) {
@@ -19,7 +19,7 @@ export async function POST(req) {
     const client = await clientPromise;
     const db = client.db('admin');
     const idea = await req.json(); // Extract idea data from request body
-    const result = await db.collection('ideas').insertOne(idea);
+    const result = await db.collection('hackathon_team_10').insertOne(idea);
     return NextResponse.json({ message: 'Idea created successfully', id: result.insertedId });
   } catch (e) {
     console.error(e);

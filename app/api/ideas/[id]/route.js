@@ -6,7 +6,7 @@ export async function GET(req, { params }) {
 
   try {
     const client = await clientPromise;
-    const db = client.db('admin');
+    const db = client.db('hackathon_team_10');
     const idea = await db.collection('ideas').findOne({ _id: id });
 
     if (!idea) {
