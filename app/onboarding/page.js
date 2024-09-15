@@ -43,10 +43,45 @@ export default function OnboardingPage() {
     setPage(2);
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    console.log({ bio, skills, role });
-    setPage(3); // Proceed to the next step or show confirmation
+    // Convert skills input to an array when submitting the form
+    const formattedSkills = skills
+      .split(',')
+      .map((skill) => skill.trim())
+      .filter((skill) => skill !== '');
+    setSkills(formattedSkills); // Update skills state if needed elsewhere
+
+    const formData = {
+      userId: user.id,
+      bio,
+      skills: formattedSkills,
+      role,
+      userType,
+    };
+
+    try {
+      // Make sure you're running your Next.js development server on localhost:3000
+      const response = await fetch('http://localhost:3000/api/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        // Handle successful submission here, such as showing a success message
+        console.log('Data submitted successfully!');
+        setPage(3); // Proceed to the next step or show confirmation
+      } else {
+        // Handle errors here, such as showing an error message
+        console.error('Failed to submit data:', response.status);
+      }
+    } catch (error) {
+      // Handle network errors here
+      console.error('Network error:', error);
+    }
   };
 
   const renderUserSelection = () => (
@@ -63,7 +98,9 @@ export default function OnboardingPage() {
       />
     </div>
   );
-
+  const handleSkillsChange = (e) => {
+    setSkills(e.target.value); // Just update the input field
+  };
   const renderForm = () => (
     <form onSubmit={handleFormSubmit} className="space-y-4">
       <div>
@@ -94,9 +131,9 @@ export default function OnboardingPage() {
               type="text"
               id="skills"
               value={skills}
-              onChange={(e) => setSkills(e.target.value)}
+              onChange={handleSkillsChange}
               className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50"
-              placeholder="Your technical skills..."
+              placeholder="Your technical skills, separated by commas..."
             />
           </div>
           <div>
