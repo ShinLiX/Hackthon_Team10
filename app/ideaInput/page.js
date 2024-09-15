@@ -1,15 +1,38 @@
 'use client';
 import React, { useState } from 'react';
-import './IdeaInputForm.css'; // Import the CSS file
+import { useUser } from '@clerk/nextjs';
+import './IdeaInputForm.css'; 
 
 const IdeaInputForm = () => {
+  const { isSignedIn, user, isLoaded } = useUser();
+
+  if (!isLoaded) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Loading...
+      </div>
+    );
+  }
+  if (!isSignedIn) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        Please sign in to view this page.
+      </div>
+    );
+  }
+
+  console.log(user.id);
+
+
   const [idea, setIdea] = useState({
     title: '',
     body: '',
     teamMembers: [{ role: 'Front-End Developer', count: 0 }],
     contactEmails: [''],
-    contactLinks: ['']
+    contactLinks: [''],
+    ideaOwnerID: user.id // Set the idea owner ID
   });
+
 
   // Handle input changes for idea title and body
   const handleInputChange = (e) => {
