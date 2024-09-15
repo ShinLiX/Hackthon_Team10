@@ -54,6 +54,7 @@ export default function OnboardingPage() {
 
     const formData = {
       userId: user.id,
+      name: user.fullName,
       bio,
       skills: formattedSkills,
       role,

@@ -18,16 +18,16 @@ export default function Home() {
       <main className="container mx-auto px-4">
         <section className="text-center p-6">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Welcome to Idea Shed (YVR)
+            Welcome! What would you like to explore?
           </h1>
           <p className="text-gray-700 text-lg mb-4">
-            Have a brilliant tech idea but need the right people to help bring
-            it to life? Discover a community of tech enthusiasts and experts
-            ready to jumpstart your project.
+            We connect idea-holders with the right technical talent, enabling
+            developers to collaborate on projects that align with their skills
+            and passions.
           </p>
           <Link
             href="/about"
-            className=" text-black font-bold py-2 px-4 rounded bg-white border boder-black hover:bg-olive transition duration-300">
+            className="text-black font-bold py-2 px-4 rounded bg-white border border-black hover:bg-olive transition duration-300">
             Learn More
           </Link>
         </section>
@@ -46,15 +46,19 @@ export default function Home() {
                 into reality.
               </p>
             </div>
-            <div className="bg-white shadow-lg rounded-lg p-6">
-              <h3 className="text-xl font-semibold mb-2">
-                Collaborate on Projects &rarr;
-              </h3>
-              <p>
-                Work together on exciting projects and gain real-world
-                experience and insights.
-              </p>
-            </div>
+            <Link
+              href="/profile"
+              className="bg-white shadow-lg rounded-lg p-6 block hover:shadow-xl transition-shadow duration-300">
+              <div>
+                <h3 className="text-xl font-semibold mb-2">
+                  Collaborate on Projects &rarr;
+                </h3>
+                <p>
+                  Work together on exciting projects and gain real-world
+                  experience and insights.
+                </p>
+              </div>
+            </Link>
             <div className="bg-white shadow-lg rounded-lg p-6">
               <h3 className="text-xl font-semibold mb-2">
                 Grow Your Network &rarr;
@@ -65,17 +69,6 @@ export default function Home() {
               </p>
             </div>
           </div>
-        </section>
-
-        <section className="text-center p-6">
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
-            Ready to Get Started?
-          </h2>
-          <p className="text-gray-700 mb-4">
-            Join our platform today and bring your tech ideas to life with the
-            help of the Vancouver tech community.
-          </p>
-          <SignUpButton className="h-8 m-4 bg-olive border boder-black hover:bg-olive text-black font-bold px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </section>
       </main>
     </div>

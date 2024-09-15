@@ -1,4 +1,5 @@
 'use client';
+import { SignUpButton } from '@clerk/nextjs';
 import { useEffect, useState } from 'react';
 
 export default function ProfilesPage() {
@@ -48,6 +49,9 @@ export default function ProfilesPage() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="flex justify-end mr-8 py-6">
+        <SignUpButton className="h-8 m-4 bg-olive border boder-black hover:bg-olive text-black font-bold px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
       </div>
     </div>
   );
