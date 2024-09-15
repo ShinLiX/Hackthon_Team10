@@ -27,7 +27,7 @@ export default function Home() {
           </p>
           <Link
             href="/about"
-            className="bg-blue-500 text-white font-bold py-2 px-4 rounded hover:bg-blue-700 transition duration-300">
+            className=" text-black font-bold py-2 px-4 rounded bg-white border boder-black hover:bg-olive transition duration-300">
             Learn More
           </Link>
         </section>
@@ -75,7 +75,7 @@ export default function Home() {
             Join our platform today and bring your tech ideas to life with the
             help of the Vancouver tech community.
           </p>
-          <SignUpButton className="h-8 m-4 bg-blue-500 hover:bg-blue-600 text-white font-bold px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
+          <SignUpButton className="h-8 m-4 bg-olive border boder-black hover:bg-olive text-black font-bold px-4 rounded-full focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110" />
         </section>
       </main>
     </div>
