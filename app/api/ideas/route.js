@@ -17,9 +17,9 @@ export async function GET() {
 export async function POST(req) {
   try {
     const client = await clientPromise;
-    const db = client.db('admin');
-    const idea = await req.json(); // Extract idea data from request body
-    const result = await db.collection('hackathon_team_10').insertOne(idea);
+    const db = client.db('hackathon_team_10');
+    const idea = await req.json();
+    const result = await db.collection('ideas').insertOne(idea);
     return NextResponse.json({ message: 'Idea created successfully', id: result.insertedId });
   } catch (e) {
     console.error(e);
