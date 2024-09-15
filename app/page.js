@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-cream flex flex-col justify-center items-center">
       <Head>
-        <title>Vancouver Idea Shed</title>
+        <title>Idea Shed (YVR)</title>
         <meta
           name="description"
           content="Connect with technical talent to kickstart your tech projects in Vancouver."
@@ -18,7 +18,7 @@ export default function Home() {
       <main className="container mx-auto px-4">
         <section className="text-center p-6">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Welcome to Vancouver Idea Shed
+            Welcome to Idea Shed (YVR)
           </h1>
           <p className="text-gray-700 text-lg mb-4">
             Have a brilliant tech idea but need the right people to help bring
