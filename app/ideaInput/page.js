@@ -1,5 +1,4 @@
 'use client';
-
 import React, { useState } from 'react';
 import './IdeaInputForm.css'; // Import the CSS file
 
@@ -8,11 +7,11 @@ const IdeaInputForm = () => {
     title: '',
     body: '',
     teamMembers: [{ role: 'Front-End Developer', count: 0 }],
-    contactEmail: '',
-    contactLink: ''
+    contactEmails: [''],
+    contactLinks: ['']
   });
 
-  // Handle input changes
+  // Handle input changes for idea title and body
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setIdea({ ...idea, [name]: value });
@@ -36,16 +35,48 @@ const IdeaInputForm = () => {
 
   // Remove a team member row
   const removeTeamMember = (index) => {
-    setIdea({
-      ...idea,
-      teamMembers: idea.teamMembers.filter((_, i) => i !== index)
-    });
+    const updatedMembers = idea.teamMembers.filter((_, i) => i !== index);
+    setIdea({ ...idea, teamMembers: updatedMembers });
+  };
+
+  // Handle email and link changes
+  const handleContactChange = (index, field, value) => {
+    const updatedContacts = [...idea[field]];
+    updatedContacts[index] = value;
+    setIdea({ ...idea, [field]: updatedContacts });
+  };
+
+  // Add a new email or link input
+  const addContactField = (field) => {
+    setIdea({ ...idea, [field]: [...idea[field], ''] });
+  };
+
+  // Remove an email or link input
+  const removeContactField = (field, index) => {
+    const updatedContacts = idea[field].filter((_, i) => i !== index);
+    setIdea({ ...idea, [field]: updatedContacts });
   };
 
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit =  async (e) => {
     e.preventDefault();
     console.log(idea);
+    try {
+      const response = await fetch('/api/ideas', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(idea)
+      });
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      console.log('Idea created successfully:', data);
+    } catch (error) {
+      console.error('Error creating idea:', error);
+    }
     // Perform API call to submit the idea
   };
 
@@ -70,7 +101,6 @@ const IdeaInputForm = () => {
           value={idea.body}
           onChange={handleInputChange}
           placeholder="Describe your idea..."
-          rows="5"
         />
       </div>
 
@@ -96,15 +126,15 @@ const IdeaInputForm = () => {
               value={member.count}
               onChange={(e) => handleTeamMemberChange(index, 'count', e.target.value)}
               placeholder="# of people"
-              min="0"
             />
-            <span> people</span>
+
+            <label2>People</label2>
 
             <button type="button" onClick={addTeamMember}>+</button>
-            {idea.teamMembers.length > 1 && (
+            {index > 0 && (
               <button
                 type="button"
-                className="remove-member-button"
+                className="minus-button"
                 onClick={() => removeTeamMember(index)}
               >
                 -
@@ -113,28 +143,53 @@ const IdeaInputForm = () => {
           </div>
         ))}
 
-        {/* Contact Info */}
+        {/* Contact Info Section */}
         <div className="contact-info-row">
           <label>Contact Info:</label>
-          <input
-            type="email"
-            name="contactEmail"
-            value={idea.contactEmail}
-            onChange={handleInputChange}
-            placeholder="Email"
-          />
+          {idea.contactEmails.map((email, index) => (
+            <div key={index} className="contact-info-row">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => handleContactChange(index, 'contactEmails', e.target.value)}
+                placeholder="Email"
+              />
+              <button type="button" onClick={() => addContactField('contactEmails')}>+</button>
+              {index > 0 && (
+                <button
+                  type="button"
+                  className="minus-button"
+                  onClick={() => removeContactField('contactEmails', index)}
+                >
+                  -
+                </button>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Insert Link */}
         <div className="contact-info-row">
           <label>Insert Link:</label>
-          <input
-            type="url"
-            name="contactLink"
-            value={idea.contactLink}
-            onChange={handleInputChange}
-            placeholder="Link"
-          />
+          {idea.contactLinks.map((link, index) => (
+            <div key={index} className="contact-info-row">
+              <input
+                type="url"
+                value={link}
+                onChange={(e) => handleContactChange(index, 'contactLinks', e.target.value)}
+                placeholder="Link"
+              />
+              <button type="button" onClick={() => addContactField('contactLinks')}>+</button>
+              {index > 0 && (
+                <button
+                  type="button"
+                  className="minus-button"
+                  onClick={() => removeContactField('contactLinks', index)}
+                >
+                  -
+                </button>
+              )}
+            </div>
+          ))}
         </div>
       </div>
 
